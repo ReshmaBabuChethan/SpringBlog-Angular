@@ -5,18 +5,19 @@ import javax.persistence.*;
 //import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
+
 @Entity
 @Table
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // @NotBlank
+    //@NotBlank
     @Column
     private String title;
     @Lob
     @Column
-    //@NotEmpty
+    @NotEmpty
     private String content;
     @Column
     private Instant createdOn;

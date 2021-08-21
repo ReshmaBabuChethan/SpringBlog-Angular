@@ -10,26 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/posts/")
+//@RequestMapping("/api/posts")
+@CrossOrigin(origins = "*")
+//google @CrossOrigin(origins = "http://localhost:4200/add-post")
 public class PostController {
 
     @Autowired
     private PostService postService;
 
+    //@PostMapping("/add-post")
     @PostMapping
-    public ResponseEntity createPost(@RequestBody PostDto postDto) {
+    public ResponseEntity createPost(@RequestBody PostDto postDto){
         postService.createPost(postDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PostDto>> showAllPosts() {
+    public ResponseEntity<List<PostDto>> showAllPosts(){
         return new ResponseEntity<>(postService.showAllPosts(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<PostDto> getSinglePost(@PathVariable @RequestBody Long id) {
+    public ResponseEntity<PostDto> getSinglePost(@PathVariable @RequestBody Long id){
         return new ResponseEntity<>(postService.readSinglePost(id), HttpStatus.OK);
     }
 }

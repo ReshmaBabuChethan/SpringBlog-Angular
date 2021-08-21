@@ -4,7 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table
+
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +26,9 @@ public class User {
     }
 
     public String getUserName() {
+        return userName;
+    }
+    public String getUsername() {
         return userName;
     }
 
@@ -47,7 +52,5 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() {
-        return userName;
-    }
+
 }

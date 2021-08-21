@@ -24,10 +24,10 @@ public class PostService {
     private PostRepository postRepository;
 
     @Transactional
-   public List<PostDto> showAllPosts() {
-       List<Post> posts = postRepository.findAll();
-       return posts.stream().map(this::mapFromPostToDto).collect(toList());
-   }
+    public List<PostDto> showAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream().map(this::mapFromPostToDto).collect(toList());
+    }
 
     @Transactional
     public void createPost(PostDto postDto) {
@@ -39,9 +39,7 @@ public class PostService {
     public PostDto readSinglePost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id));
         return mapFromPostToDto(post);
-        }
-
-
+    }
 
     private PostDto mapFromPostToDto(Post post) {
         PostDto postDto = new PostDto();
@@ -49,6 +47,7 @@ public class PostService {
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());
         postDto.setUsername(post.getUsername());
+        //System.out.println("POSTTODTO user"+post.getUsername());
         return postDto;
     }
 
@@ -57,6 +56,7 @@ public class PostService {
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
+        //System.out.println("currentuser"+loggedInUser.getUsername());
         post.setCreatedOn(Instant.now());
         post.setUsername(loggedInUser.getUsername());
         post.setUpdatedOn(Instant.now());

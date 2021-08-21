@@ -1,6 +1,7 @@
 package com.bjm.springblog.dto;
 
 public class PostDto {
+
     private Long id;
     private String content;
     private String title;
@@ -37,5 +38,4 @@ public class PostDto {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }
